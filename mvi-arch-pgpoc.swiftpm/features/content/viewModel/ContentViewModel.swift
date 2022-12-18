@@ -8,6 +8,13 @@
 import Foundation
 
 class ContentViewModel: ObservableObject {
-    let grettingText = "Hello, world!"
-    let imageName = "globe"
+
+    @Published var state: ContentState = ContentState()
+    
+    func onEvent(_ event: ContentEvent) {
+        switch event {
+        case .nameChanged(let name):
+            state.grettingText = "Hello \(name)"
+        }
+    }
 }
